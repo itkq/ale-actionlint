@@ -1,23 +1,19 @@
-# ale-linter-actionlint.vim
+# ale-actionlint
 
-`ale-linter-actionlint.vim` is [ALE] custom linter for [actionlint].
+## Usage
 
-## Installation
-
-### Installation with [Vundle]
+Minimum config of dein
 
 ```vim
-Plugin 'hankei6km/ale-linter-actionlint.vim'
+[[plugins]]
+repo = 'itkq/ale-actionlint'
+
+[[plugins]]
+repo = 'dense-analysis/ale'
+hook_add = '''
+
+let g:ale_linters = {
+\   'yaml': ['actionlint'],
+\}
+'''
 ```
-
-## License
-
-MIT License
-
-Copyright (c) 2022 hankei6km
-
-
-[Vim]: https://www.vim.org/
-[ALE]: https://github.com/dense-analysis/ale/blob/master/supported-tools.md
-[actionlint]: https://github.com/rhysd/actionlint
-[Vundle]: https://github.com/VundleVim/Vundle.vim

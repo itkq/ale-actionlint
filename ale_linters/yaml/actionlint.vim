@@ -1,3 +1,7 @@
+function! ale_linters#yaml#actionlint#GetExecutable(buffer) abort
+    return expand('%:p') =~ '.\+\/.github\/workflows\/.\+$' ? 'actionlint' : ''
+endfunction
+
 function! ale_linters#yaml#actionlint#Handle(buffer, lines) abort
     let l:output = []
 
@@ -16,10 +20,8 @@ endfunction
 
 call ale#linter#Define('yaml', {
 \   'name': 'actionlint',
-\   'executable': {b -> expand('#' . b . ':p:h') =~? '\.github/workflows$' ? 'actionlint' : ''},
+\   'executable': function('ale_linters#yaml#actionlint#GetExecutable'),
 \   'command': 'actionlint -format "{{json .}}" - < %s',
 \   'callback': 'ale_linters#yaml#actionlint#Handle',
 \   'output_stream': 'stdout',
 \})
-
-
